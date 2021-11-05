@@ -1,16 +1,15 @@
 #pragma once
 
-#include <stdio.h>
 #include <vector>
 #include <algorithm>
-#include <vector>
+#include <stdio.h>
 #include "Grid.h"
-#include "Function.h"
+#include "DerivativeFunction.h"
 
-class Exact : Grid {
+class RungeKutta : Grid {
     public:
         GraphPoints get_points(float x0, float y0, float X, int N);
-        Exact( Function* func );
+        RungeKutta( DerivativeFunction* func );
     private:
-        Function* function;
+        DerivativeFunction* function;
 };
