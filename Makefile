@@ -52,20 +52,20 @@ OBJECTS_DIR   = ./
 
 ####### Files
 
-SOURCES       = Controller.cpp \
-		DerivativeFunction.cpp \
-		Euler.cpp \
-		Exact.cpp \
-		Function.cpp \
-		GraphPoints.cpp \
-		Grid.cpp \
-		ImpovedEuler.cpp \
-		main.cpp \
-		MyFunction.cpp \
-		Point.cpp \
-		RungeKutta.cpp \
-		TextSlider.cpp \
-		View.cpp moc_Controller.cpp \
+SOURCES       = src/Controller.cpp \
+		src/DerivativeFunction.cpp \
+		src/Euler.cpp \
+		src/Exact.cpp \
+		src/Function.cpp \
+		src/GraphPoints.cpp \
+		src/Grid.cpp \
+		src/ImpovedEuler.cpp \
+		src/main.cpp \
+		src/MyFunction.cpp \
+		src/Point.cpp \
+		src/RungeKutta.cpp \
+		src/TextSlider.cpp \
+		src/View.cpp moc_Controller.cpp \
 		moc_TextSlider.cpp \
 		moc_View.cpp
 OBJECTS       = Controller.o \
@@ -276,33 +276,33 @@ DIST          = /usr/lib/qt/mkspecs/features/spec_pre.prf \
 		/usr/lib/qt/mkspecs/features/exceptions.prf \
 		/usr/lib/qt/mkspecs/features/yacc.prf \
 		/usr/lib/qt/mkspecs/features/lex.prf \
-		DE_CP1.pro Constants.h \
-		Controller.h \
-		DerivativeFunction.h \
-		Euler.h \
-		Exact.h \
-		Function.h \
-		GraphPoints.h \
-		Grid.h \
-		ImpovedEuler.h \
-		MyFunction.h \
-		Point.h \
-		RungeKutta.h \
-		TextSlider.h \
-		View.h Controller.cpp \
-		DerivativeFunction.cpp \
-		Euler.cpp \
-		Exact.cpp \
-		Function.cpp \
-		GraphPoints.cpp \
-		Grid.cpp \
-		ImpovedEuler.cpp \
-		main.cpp \
-		MyFunction.cpp \
-		Point.cpp \
-		RungeKutta.cpp \
-		TextSlider.cpp \
-		View.cpp
+		DE_CP1.pro src/Constants.h \
+		src/Controller.h \
+		src/DerivativeFunction.h \
+		src/Euler.h \
+		src/Exact.h \
+		src/Function.h \
+		src/GraphPoints.h \
+		src/Grid.h \
+		src/ImpovedEuler.h \
+		src/MyFunction.h \
+		src/Point.h \
+		src/RungeKutta.h \
+		src/TextSlider.h \
+		src/View.h src/Controller.cpp \
+		src/DerivativeFunction.cpp \
+		src/Euler.cpp \
+		src/Exact.cpp \
+		src/Function.cpp \
+		src/GraphPoints.cpp \
+		src/Grid.cpp \
+		src/ImpovedEuler.cpp \
+		src/main.cpp \
+		src/MyFunction.cpp \
+		src/Point.cpp \
+		src/RungeKutta.cpp \
+		src/TextSlider.cpp \
+		src/View.cpp
 QMAKE_TARGET  = DE_CP1
 DESTDIR       = 
 TARGET        = DE_CP1
@@ -714,8 +714,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/qt/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents Constants.h Controller.h DerivativeFunction.h Euler.h Exact.h Function.h GraphPoints.h Grid.h ImpovedEuler.h MyFunction.h Point.h RungeKutta.h TextSlider.h View.h $(DISTDIR)/
-	$(COPY_FILE) --parents Controller.cpp DerivativeFunction.cpp Euler.cpp Exact.cpp Function.cpp GraphPoints.cpp Grid.cpp ImpovedEuler.cpp main.cpp MyFunction.cpp Point.cpp RungeKutta.cpp TextSlider.cpp View.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents src/Constants.h src/Controller.h src/DerivativeFunction.h src/Euler.h src/Exact.h src/Function.h src/GraphPoints.h src/Grid.h src/ImpovedEuler.h src/MyFunction.h src/Point.h src/RungeKutta.h src/TextSlider.h src/View.h $(DISTDIR)/
+	$(COPY_FILE) --parents src/Controller.cpp src/DerivativeFunction.cpp src/Euler.cpp src/Exact.cpp src/Function.cpp src/GraphPoints.cpp src/Grid.cpp src/ImpovedEuler.cpp src/main.cpp src/MyFunction.cpp src/Point.cpp src/RungeKutta.cpp src/TextSlider.cpp src/View.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -750,33 +750,44 @@ moc_predefs.h: /usr/lib/qt/mkspecs/features/data/dummy.cpp
 compiler_moc_header_make_all: moc_Controller.cpp moc_TextSlider.cpp moc_View.cpp
 compiler_moc_header_clean:
 	-$(DEL_FILE) moc_Controller.cpp moc_TextSlider.cpp moc_View.cpp
-moc_Controller.cpp: Controller.h \
-		Function.h \
-		DerivativeFunction.h \
+moc_Controller.cpp: src/Controller.h \
+		src/View.h \
+		src/Function.h \
+		src/DerivativeFunction.h \
+		src/Exact.h \
+		src/Grid.h \
+		src/GraphPoints.h \
+		src/Point.h \
+		src/Euler.h \
+		src/ImpovedEuler.h \
+		src/RungeKutta.h \
+		src/Constants.h \
+		src/MyFunction.h \
+		src/TextSlider.h \
 		moc_predefs.h \
 		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/tea/Documents/GitHub/DE_CP1/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/tea/Documents/GitHub/DE_CP1 -I/home/tea/Documents/GitHub/DE_CP1 -I/usr/include/qt -I/usr/include/qt/QtCharts -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/11.1.0 -I/usr/include/c++/11.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/11.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include-fixed -I/usr/include Controller.h -o moc_Controller.cpp
+	/usr/bin/moc $(DEFINES) --include /home/tea/Documents/GitHub/DE_CP1/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/tea/Documents/GitHub/DE_CP1 -I/home/tea/Documents/GitHub/DE_CP1 -I/usr/include/qt -I/usr/include/qt/QtCharts -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/11.1.0 -I/usr/include/c++/11.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/11.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include-fixed -I/usr/include src/Controller.h -o moc_Controller.cpp
 
-moc_TextSlider.cpp: TextSlider.h \
-		Constants.h \
+moc_TextSlider.cpp: src/TextSlider.h \
+		src/Constants.h \
 		moc_predefs.h \
 		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/tea/Documents/GitHub/DE_CP1/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/tea/Documents/GitHub/DE_CP1 -I/home/tea/Documents/GitHub/DE_CP1 -I/usr/include/qt -I/usr/include/qt/QtCharts -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/11.1.0 -I/usr/include/c++/11.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/11.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include-fixed -I/usr/include TextSlider.h -o moc_TextSlider.cpp
+	/usr/bin/moc $(DEFINES) --include /home/tea/Documents/GitHub/DE_CP1/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/tea/Documents/GitHub/DE_CP1 -I/home/tea/Documents/GitHub/DE_CP1 -I/usr/include/qt -I/usr/include/qt/QtCharts -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/11.1.0 -I/usr/include/c++/11.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/11.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include-fixed -I/usr/include src/TextSlider.h -o moc_TextSlider.cpp
 
-moc_View.cpp: View.h \
-		Function.h \
-		DerivativeFunction.h \
-		Exact.h \
-		Grid.h \
-		GraphPoints.h \
-		Point.h \
-		Euler.h \
-		ImpovedEuler.h \
-		RungeKutta.h \
-		Constants.h \
+moc_View.cpp: src/View.h \
+		src/Function.h \
+		src/DerivativeFunction.h \
+		src/Exact.h \
+		src/Grid.h \
+		src/GraphPoints.h \
+		src/Point.h \
+		src/Euler.h \
+		src/ImpovedEuler.h \
+		src/RungeKutta.h \
+		src/Constants.h \
 		moc_predefs.h \
 		/usr/bin/moc
-	/usr/bin/moc $(DEFINES) --include /home/tea/Documents/GitHub/DE_CP1/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/tea/Documents/GitHub/DE_CP1 -I/home/tea/Documents/GitHub/DE_CP1 -I/usr/include/qt -I/usr/include/qt/QtCharts -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/11.1.0 -I/usr/include/c++/11.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/11.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include-fixed -I/usr/include View.h -o moc_View.cpp
+	/usr/bin/moc $(DEFINES) --include /home/tea/Documents/GitHub/DE_CP1/moc_predefs.h -I/usr/lib/qt/mkspecs/linux-g++ -I/home/tea/Documents/GitHub/DE_CP1 -I/home/tea/Documents/GitHub/DE_CP1 -I/usr/include/qt -I/usr/include/qt/QtCharts -I/usr/include/qt/QtWidgets -I/usr/include/qt/QtGui -I/usr/include/qt/QtCore -I/usr/include/c++/11.1.0 -I/usr/include/c++/11.1.0/x86_64-pc-linux-gnu -I/usr/include/c++/11.1.0/backward -I/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include -I/usr/local/include -I/usr/lib/gcc/x86_64-pc-linux-gnu/11.1.0/include-fixed -I/usr/include src/View.h -o moc_View.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -794,98 +805,104 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 
 ####### Compile
 
-Controller.o: Controller.cpp Controller.h \
-		Function.h \
-		DerivativeFunction.h \
-		View.h \
-		Exact.h \
-		Grid.h \
-		GraphPoints.h \
-		Point.h \
-		Euler.h \
-		ImpovedEuler.h \
-		RungeKutta.h \
-		Constants.h \
-		MyFunction.h \
-		TextSlider.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Controller.o Controller.cpp
+Controller.o: src/Controller.cpp src/Controller.h \
+		src/View.h \
+		src/Function.h \
+		src/DerivativeFunction.h \
+		src/Exact.h \
+		src/Grid.h \
+		src/GraphPoints.h \
+		src/Point.h \
+		src/Euler.h \
+		src/ImpovedEuler.h \
+		src/RungeKutta.h \
+		src/Constants.h \
+		src/MyFunction.h \
+		src/TextSlider.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Controller.o src/Controller.cpp
 
-DerivativeFunction.o: DerivativeFunction.cpp DerivativeFunction.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DerivativeFunction.o DerivativeFunction.cpp
+DerivativeFunction.o: src/DerivativeFunction.cpp src/DerivativeFunction.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o DerivativeFunction.o src/DerivativeFunction.cpp
 
-Euler.o: Euler.cpp Euler.h \
-		Grid.h \
-		GraphPoints.h \
-		Point.h \
-		DerivativeFunction.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Euler.o Euler.cpp
+Euler.o: src/Euler.cpp src/Euler.h \
+		src/Grid.h \
+		src/GraphPoints.h \
+		src/Point.h \
+		src/DerivativeFunction.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Euler.o src/Euler.cpp
 
-Exact.o: Exact.cpp Exact.h \
-		Grid.h \
-		GraphPoints.h \
-		Point.h \
-		Function.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Exact.o Exact.cpp
+Exact.o: src/Exact.cpp src/Exact.h \
+		src/Grid.h \
+		src/GraphPoints.h \
+		src/Point.h \
+		src/Function.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Exact.o src/Exact.cpp
 
-Function.o: Function.cpp Function.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Function.o Function.cpp
+Function.o: src/Function.cpp src/Function.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Function.o src/Function.cpp
 
-GraphPoints.o: GraphPoints.cpp GraphPoints.h \
-		Point.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o GraphPoints.o GraphPoints.cpp
+GraphPoints.o: src/GraphPoints.cpp src/GraphPoints.h \
+		src/Point.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o GraphPoints.o src/GraphPoints.cpp
 
-Grid.o: Grid.cpp Grid.h \
-		GraphPoints.h \
-		Point.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Grid.o Grid.cpp
+Grid.o: src/Grid.cpp src/Grid.h \
+		src/GraphPoints.h \
+		src/Point.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Grid.o src/Grid.cpp
 
-ImpovedEuler.o: ImpovedEuler.cpp ImpovedEuler.h \
-		Grid.h \
-		GraphPoints.h \
-		Point.h \
-		DerivativeFunction.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ImpovedEuler.o ImpovedEuler.cpp
+ImpovedEuler.o: src/ImpovedEuler.cpp src/ImpovedEuler.h \
+		src/Grid.h \
+		src/GraphPoints.h \
+		src/Point.h \
+		src/DerivativeFunction.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o ImpovedEuler.o src/ImpovedEuler.cpp
 
-main.o: main.cpp Controller.h \
-		Function.h \
-		DerivativeFunction.h \
-		MyFunction.h \
-		Exact.h \
-		Grid.h \
-		GraphPoints.h \
-		Point.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
+main.o: src/main.cpp src/Controller.h \
+		src/View.h \
+		src/Function.h \
+		src/DerivativeFunction.h \
+		src/Exact.h \
+		src/Grid.h \
+		src/GraphPoints.h \
+		src/Point.h \
+		src/Euler.h \
+		src/ImpovedEuler.h \
+		src/RungeKutta.h \
+		src/Constants.h \
+		src/MyFunction.h \
+		src/TextSlider.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o src/main.cpp
 
-MyFunction.o: MyFunction.cpp MyFunction.h \
-		Function.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MyFunction.o MyFunction.cpp
+MyFunction.o: src/MyFunction.cpp src/MyFunction.h \
+		src/Function.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o MyFunction.o src/MyFunction.cpp
 
-Point.o: Point.cpp Point.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Point.o Point.cpp
+Point.o: src/Point.cpp src/Point.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o Point.o src/Point.cpp
 
-RungeKutta.o: RungeKutta.cpp RungeKutta.h \
-		Grid.h \
-		GraphPoints.h \
-		Point.h \
-		DerivativeFunction.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o RungeKutta.o RungeKutta.cpp
+RungeKutta.o: src/RungeKutta.cpp src/RungeKutta.h \
+		src/Grid.h \
+		src/GraphPoints.h \
+		src/Point.h \
+		src/DerivativeFunction.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o RungeKutta.o src/RungeKutta.cpp
 
-TextSlider.o: TextSlider.cpp TextSlider.h \
-		Constants.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o TextSlider.o TextSlider.cpp
+TextSlider.o: src/TextSlider.cpp src/TextSlider.h \
+		src/Constants.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o TextSlider.o src/TextSlider.cpp
 
-View.o: View.cpp View.h \
-		Function.h \
-		DerivativeFunction.h \
-		Exact.h \
-		Grid.h \
-		GraphPoints.h \
-		Point.h \
-		Euler.h \
-		ImpovedEuler.h \
-		RungeKutta.h \
-		Constants.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o View.o View.cpp
+View.o: src/View.cpp src/View.h \
+		src/Function.h \
+		src/DerivativeFunction.h \
+		src/Exact.h \
+		src/Grid.h \
+		src/GraphPoints.h \
+		src/Point.h \
+		src/Euler.h \
+		src/ImpovedEuler.h \
+		src/RungeKutta.h \
+		src/Constants.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o View.o src/View.cpp
 
 moc_Controller.o: moc_Controller.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_Controller.o moc_Controller.cpp
